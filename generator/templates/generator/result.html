@@ -1,0 +1,70 @@
+{% extends "base_generic.html" %}
+{% block title%}
+  <title>YouTubeToText</title>
+{% endblock %}
+
+{% block content %}
+  <section class="hero is-fullheight-with-navbar">
+    <div class="hero-body">
+      <div class="container">
+        <div class="tabs is-centered is-toggle">
+          <ul>
+            <li id="rawTab">
+              <a>Raw Data</a>
+            </li>
+            <li class="is-active" id="transcriptTab">
+              <a>Transcript</a>
+            </li>
+            <li id="paragraphsTab">
+              <a>Paragraphs</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="columns is-centered is-multiline box-container">
+          <div class="column box p-5 pt-6 tab-content content is-8-tablet" id="rawContentDiv">
+            <div id="rawContent">
+              <p>{{ raw }}</p>
+            </div>
+            <button class="button is-warning copy-button is-small" onclick="copyText('raw')">
+              <span class="icon is-small">
+                <i class="fa fa-clone"></i>
+              </span>
+              <span>Copy</span>
+            </button>
+          </div>
+          <div class="column box p-5 pt-6 tab-content content is-8-tablet is-active" id="transcriptContentDiv">
+            <div id="transcriptContent">
+              <p>{{ transcript }}</p>
+            </div>
+            <button class="button is-warning copy-button is-small" onclick="copyText('transcript')">
+              <span class="icon is-small">
+                <i class="fa fa-clone"></i>
+              </span>
+              <span>Copy</span>
+            </button>
+          </div>
+          <div class="column box p-5 pt-6 tab-content content is-8-tablet" id="paragraphsContentDiv">
+            <div id="paragraphsContent">
+              {% for paragraph in paragraphs %}
+                <p>
+                  {{ paragraph }}
+                </p>
+              {% endfor %}
+            </div>
+
+            <button class=" button is-warning copy-button is-small" onclick="copyText('paragraphs')">
+              <span class="icon is-small">
+                <i class="fa fa-clone"></i>
+              </span>
+              <span>Copy</span>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+{% endblock %}

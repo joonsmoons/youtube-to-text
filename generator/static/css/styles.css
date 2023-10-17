@@ -1,0 +1,40 @@
+.navbar-brand .navbar-item {
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: 0px;
+  line-height: 50px;
+}
+
+.icon {
+  color: black;
+}
+
+#timerange .field {
+  max-width: 210px;
+}
+
+.tab-content {
+  position: relative;
+  height: 70vh;
+  overflow: auto;
+}
+
+.copy-button {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  opacity: 0.5;
+  z-index: 1; /* Ensure it's above other elements */
+}
+
+.copy-button:hover {
+  opacity: 1;
+}
+
+@media screen and (max-width: 769px) {
+  .box {
+    box-shadow: none;
+  }
+}

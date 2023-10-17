@@ -1,0 +1,98 @@
+{% extends "base_generic.html" %}
+{% block title%}
+  <title>YouTubeToText</title>
+{% endblock %}
+{% block content %}
+  <section class="hero is-fullheight-with-navbar mt-4">
+    <div class="hero-body">
+      <div class="columns is-align-items-center is-justify-content-center">
+        <div class="column is-5">
+          <p class="title is-size-4">
+            Effortlessly Convert YouTube Videos into Text Transcripts
+          </p>
+          <p class="is-size-6">
+            YouTubeToText is a cost-free online tool designed for effortlessly fetching subtitles directly from YouTube videos. With our platform, users can readily obtain subtitles or easily copy them from our transcription tool. There's no need for users to hassle with downloading extensions or external software. Our approach is entirely web-based, allowing you to acquire subtitles by simply inputting the video's URL and clicking the copy button.
+          </p>
+        </div>
+        <div class="column is-1 is-0-mobile"></div>
+        <div class="column is-6 p-5 m-2 box">
+          <form class="form" method="post">
+            {% csrf_token %}
+
+            <div class="field">
+              <label class="label" for="{{form.youtube_url.id_for_label}}">Enter URL</label>
+              <div class="control">
+                {% comment %} {{ form.youtube_url }} {% endcomment %}
+                <input type="text" id="{{form.youtube_url.id_for_label}}" 
+                      name="{{form.youtube_url.html_name}}" 
+                      value="{{form.youtube_url.value|default_if_none:''}}" 
+                      class="input" 
+                      placeholder="https://www.youtube.com/watch?v=dQw4w9WgXcQ">
+              </div>
+              
+              {% if form.youtube_url.errors %}
+                {% for error in form.youtube_url.errors %}
+                <p class="help is-danger">
+                  {{ error|safe }}
+                </p>
+                {% endfor %}
+              {% endif %}
+
+              {% if form.non_field_errors %}
+                <p class="help is-danger">
+                    {% for error in form.non_field_errors %}
+                        {{ error|safe }}
+                    {% endfor %}
+                </p>
+            {% endif %}
+            </div>
+            <div class="field">
+              <label class="label">Language</label>
+              <div class="control">
+                <div class='select'>
+                  {{ form.language }}
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <div class="control" id="timerange">
+                <label class="label">Time Range</label>
+                <div class="field has-addons mb-0">
+                  <p class="control">{{ form.start_time }}</p>
+                  <p class="control">
+                    <a class="button is-static">-</a>
+                  </p>
+                  <p class="control">{{ form.end_time }}</p>
+                </div>
+                <p class="help is-danger">
+                  {% if form.start_time.errors and form.end_time.errors %}
+                    {% for error in form.start_time.errors %}
+                      {{ error|safe }}
+                    {% endfor %}
+                  {% elif form.start_time.errors %}
+                    {% for error in form.start_time.errors %}
+                      {{ error|safe }}
+                    {% endfor %}
+                  {% elif form.end_time.errors %}
+                    {% for error in form.end_time.errors %}
+                      {{ error|safe }}
+                    {% endfor %}
+                {% endif %}
+                </p>
+
+                <p class="is-size-7 has-text-grey ">*The default is the full length.</p>
+              </div>
+            </div>
+            <div class="field">
+              <div class="control">
+                <button id="submit-button" class="button is-primary" type="submit">Submit</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+{% endblock %}
