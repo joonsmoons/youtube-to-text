@@ -23,6 +23,8 @@
 .tab-content {
   height: 70vh;
   overflow: auto;
+  padding: 1.5rem;
+  padding-top: 3rem;
 }
 
 .copy-button,
@@ -46,6 +48,10 @@
   content: "Is Loading...";
 }
 
+.content ol {
+  margin-left: 1em;
+}
+
 @media screen and (max-width: 769px) {
   .box {
     box-shadow: none;
@@ -58,5 +64,16 @@
   .tabs li {
     font-size: 0.7rem; /* Adjust the font size for smaller tabs */
     padding: 0; /* Adjust padding for smaller tabs */
+  }
+
+  .tab-content {
+    height: 75vh;
+    padding: 1rem;
+    padding-top: 3rem;
+  }
+
+  .disclaimer {
+    top: 1%;
+    right: 1%;
   }
 }
