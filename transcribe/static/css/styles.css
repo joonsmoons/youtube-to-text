@@ -15,13 +15,18 @@
   max-width: 210px;
 }
 
-.tab-content {
+.tab-content,
+.input-form {
   position: relative;
+}
+
+.tab-content {
   height: 70vh;
   overflow: auto;
 }
 
-.copy-button {
+.copy-button,
+.disclaimer {
   position: absolute;
   top: 10px;
   right: 20px;
@@ -35,6 +40,10 @@
 
 .input-form {
   padding: 1.5rem;
+}
+
+.is-loading::after {
+  content: "Is Loading...";
 }
 
 @media screen and (max-width: 769px) {
