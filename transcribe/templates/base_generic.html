@@ -52,6 +52,7 @@
     </footer>
   </body>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert@2"></script>
   <script>
     $(document).ready(function () {
       $('form').on('submit', function () {
@@ -79,12 +80,18 @@
       const contentDiv = document.getElementById(`${elementId}ContentDiv`);
       let textToCopy = "";
 
-      if (elementId === "paragraphs") {
-        const paragraphItems = contentDiv.querySelectorAll("p");
-        textToCopy = Array
-          .from(paragraphItems)
-          .map((item) => item.textContent.trim())
-          .join("\n\n");
+      if (elementId === "paragraphs" | elementId === "sentences") {
+        const items = contentDiv.querySelectorAll("li");
+        const itemsArray = Array.from(items);
+        let numberedText = "";
+        for (let i = 0; i < itemsArray.length; i++) {
+          const item = itemsArray[i];
+          const text = item
+            .textContent
+            .trim();
+          numberedText += `${i + 1}. ${text}\n`;
+        }
+        textToCopy = numberedText;
       } else {
         textToCopy = contentDiv
           .querySelector("p")
@@ -110,8 +117,11 @@
         .removeChild(textarea);
 
       // Alert the user that the text has been copied
-      alert("Text copied to clipboard (excluding the button)!");
+      sweetAlert("Copied to Clipboard", "The text has been copied to the clipboard.", "success");
     }
   </script>
 
 </html>
+
+{% load sweetify %}
+{% sweetify %}
