@@ -11,7 +11,7 @@ from django.core.validators import RegexValidator
 
 
 def time_str_to_seconds(time_str):
-    parts = map(int, time_str.split(":"))
+    parts = list(map(int, time_str.split(":")))
     if len(parts) == 3:
         hours, minutes, seconds = map(int, parts)
     else:
@@ -82,6 +82,7 @@ class QueryForm(forms.ModelForm):
                     code="invalid_link",
                 ),
             )
+            return cleaned_data
 
         try:
             parsed_url = urlparse(url)
@@ -124,23 +125,16 @@ class QueryForm(forms.ModelForm):
 
         try:
             transcript_last = transcript[-1]
+            # print(transcript_last)
             max_time = transcript_last["start"] + transcript_last["duration"]
+            print(start_time, end_time)
             start_time_seconds = (
                 time_str_to_seconds(start_time) if start_time != "" else 0
             )
             end_time_seconds = (
                 time_str_to_seconds(end_time) if end_time != "" else max_time
             )
-
-            if start_time_seconds > end_time_seconds:
-                self.add_error(
-                    "start_time",
-                    forms.ValidationError(
-                        "Start time cannot be greater than end time.",
-                        code="invalid_time",
-                    ),
-                )
-            elif start_time_seconds > max_time or end_time_seconds > max_time:
+            if start_time_seconds > max_time or end_time_seconds > max_time:
                 self.add_error(
                     "start_time",
                     forms.ValidationError(
@@ -148,6 +142,15 @@ class QueryForm(forms.ModelForm):
                         code="invalid_time",
                     ),
                 )
+            elif start_time_seconds > end_time_seconds:
+                self.add_error(
+                    "start_time",
+                    forms.ValidationError(
+                        "Start time cannot be greater than end time.",
+                        code="invalid_time",
+                    ),
+                )
+
         except Exception:
             pass
 
