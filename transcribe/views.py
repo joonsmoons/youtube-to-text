@@ -8,7 +8,8 @@ from urllib.parse import urlparse, parse_qs
 import kss
 import re
 from django.shortcuts import get_object_or_404
-from django.http import Http404
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 
 
 def time_str_to_seconds(time_str):
@@ -147,4 +148,4 @@ def transcribe(request):
         )
 
     except InputData.DoesNotExist:
-        raise Http404("You did not provide any input!")
+        return HttpResponseRedirect(reverse("query_view"))
