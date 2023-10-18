@@ -10,6 +10,7 @@ import re
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+import uuid
 
 
 def time_str_to_seconds(time_str):
@@ -79,17 +80,18 @@ def query_view(request):
     if request.method == "POST":
         form = QueryForm(request.POST)
         if form.is_valid():
-            instance = form.save()  # Save the form data temporarily
-            id = instance.id
-            return redirect("transcribe", uuid=id)
+            instance = form.save(commit=False)
+            instance.uid = uuid.uuid4()
+            instance.save()
+            return redirect("transcribe", uid=instance.uid)
     else:
         form = QueryForm()
     return render(request, "index.html", {"form": form})
 
 
-def transcribe(request, uuid):
+def transcribe(request, uid):
     try:
-        data = get_object_or_404(InputData, id=uuid)
+        data = get_object_or_404(InputData, uid=uid)
         formatter = TextFormatter()
 
         # get data from form
