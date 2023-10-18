@@ -109,10 +109,15 @@ class QueryForm(forms.ModelForm):
                 ),
             )
         except NoTranscriptFound:
+            lang = ""
+            if language == "ko":
+                lang = "한국어"
+            elif language == "en":
+                lang = "English"
             self.add_error(
                 "youtube_url",
                 forms.ValidationError(
-                    f"No '{language}' transcript was not found for this YouTube video.",
+                    f"No {lang} transcript is available for this YouTube video.",
                     code="invalid_link",
                 ),
             )
