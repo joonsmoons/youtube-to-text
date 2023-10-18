@@ -1,7 +1,7 @@
-from django.urls import path
+from django.urls import path, re_path
 from . import views
 
 urlpatterns = [
-    path("", views.query_view, name="query_view"),
     path("transcribe/<uid>/", views.transcribe, name="transcribe"),
+    re_path(".*", views.query_view, name="query_view"),
 ]

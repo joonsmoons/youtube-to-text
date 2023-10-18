@@ -4,10 +4,8 @@ from .models import InputData
 from youtube_transcript_api import YouTubeTranscriptApi
 from youtube_transcript_api.formatters import TextFormatter
 from deepmultilingualpunctuation import PunctuationModel
-from urllib.parse import urlparse, parse_qs
 import kss
 import re
-from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 import uuid
@@ -94,7 +92,7 @@ def query_view(request):
 
 def transcribe(request, uid):
     try:
-        data = get_object_or_404(InputData, uid=uid)
+        data = InputData.objects.get(uid=uid)
         formatter = TextFormatter()
 
         # get data from form
@@ -144,5 +142,5 @@ def transcribe(request, uid):
             {"raw": nl, "transcript": fs, "paragraphs": ps, "sentences": ss},
         )
 
-    except InputData.DoesNotExist:
+    except Exception:
         return HttpResponseRedirect(reverse("query_view"))
