@@ -3,5 +3,5 @@ from . import views
 
 urlpatterns = [
     path("", views.query_view, name="query_view"),
-    path("transcribe/", views.transcribe, name="transcribe"),
+    path("transcribe/<uuid:uuid>/", views.transcribe, name="transcribe"),
 ]

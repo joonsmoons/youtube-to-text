@@ -80,19 +80,16 @@ def query_view(request):
         form = QueryForm(request.POST)
         if form.is_valid():
             instance = form.save()  # Save the form data temporarily
-            pk_value = instance.pk
-            return redirect(
-                "transcribe", pk=pk_value
-            )  # Redirect to the processing view
+            id = instance.id
+            return redirect("transcribe", uuid=id)
     else:
         form = QueryForm()
     return render(request, "index.html", {"form": form})
 
 
-def transcribe(request):
+def transcribe(request, uuid):
     try:
-        pk_value = request.GET.get("pk")
-        data = get_object_or_404(InputData, pk=pk_value)
+        data = get_object_or_404(InputData, id=uuid)
         formatter = TextFormatter()
 
         # get data from form
