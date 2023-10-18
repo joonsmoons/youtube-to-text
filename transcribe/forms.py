@@ -8,6 +8,7 @@ from youtube_transcript_api import (
 )
 from urllib.parse import urlparse, parse_qs
 from django.core.validators import RegexValidator
+import json
 
 
 def time_str_to_seconds(time_str):
@@ -96,6 +97,9 @@ class QueryForm(forms.ModelForm):
             transcript = YouTubeTranscriptApi.get_transcript(
                 video_id, languages=[language]
             )
+
+            transcript_json = json.dumps(transcript)
+            cleaned_data["transcript"] = transcript_json
         except KeyError:
             self.add_error(
                 "youtube_url",

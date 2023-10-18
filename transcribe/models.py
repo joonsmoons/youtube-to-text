@@ -15,3 +15,4 @@ class InputData(models.Model):
         ],
         default="English",
     )
+    transcript = models.TextField(default="")

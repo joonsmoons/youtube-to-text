@@ -11,6 +11,7 @@ from django.shortcuts import get_object_or_404
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 import uuid
+import json
 
 
 def time_str_to_seconds(time_str):
@@ -82,7 +83,9 @@ def query_view(request):
         if form.is_valid():
             instance = form.save(commit=False)
             instance.uid = uuid.uuid4()
+            instance.transcript = form.cleaned_data.get("transcript")
             instance.save()
+
             return redirect("transcribe", uid=instance.uid)
     else:
         form = QueryForm()
@@ -99,20 +102,11 @@ def transcribe(request, uid):
         language = data.language
         start_time = data.start_time
         end_time = data.end_time
+        transcript_json = data.transcript
+        transcript = json.loads(transcript_json)
 
         # delete data once consumed
         data.delete()
-
-        # parse url
-        parsed_url = urlparse(url)
-        video_id = ""
-        if "youtu.be" in url:
-            path_segments = parsed_url.path.split("/")
-            video_id = path_segments[-1]
-        else:
-            parsed_dict = parse_qs(parsed_url.query)
-            video_id = parsed_dict["v"][0]
-        transcript = YouTubeTranscriptApi.get_transcript(video_id, languages=[language])
 
         # get time data
         transcript_last = transcript[-1]
