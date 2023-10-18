@@ -33,8 +33,16 @@
   opacity: 1;
 }
 
+.input-form {
+  padding: 1.5rem;
+}
+
 @media screen and (max-width: 769px) {
   .box {
     box-shadow: none;
+  }
+
+  .input-form {
+    padding: 0rem;
   }
 }
