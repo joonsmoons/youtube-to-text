@@ -127,7 +127,7 @@ def transcribe(request):
             fs = pm.restore_punctuation(fs)
             fs = re.sub(r"([?!~])\.", r"\1", fs)
             fs = capitalize_sentences(fs)
-        elif language == "kr":
+        elif language == "ko":
             fs = ". ".join(kss.split_sentences(fs))
             fs = re.sub(r"([?!~])\.", r"\1", fs)
 
