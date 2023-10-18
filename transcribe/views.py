@@ -27,7 +27,7 @@ def capitalize_sentences(text):
     return result
 
 
-def text_to_paragraphs(text, max_sentences_per_paragraph=10, max_paragraph_length=350):
+def text_to_paragraphs(text, max_sentences_per_paragraph=10, max_paragraph_length=300):
     sentence_delimiters = [".", "!", "?"]
     sentences = []
     current_sentence = ""
@@ -66,6 +66,12 @@ def text_to_paragraphs(text, max_sentences_per_paragraph=10, max_paragraph_lengt
         paragraphs.append(current_paragraph)
 
     return paragraphs
+
+
+def text_to_sentences(text):
+    sentence_pattern = r"(?<=[.!?])\s+"
+    sentences = re.split(sentence_pattern, text)
+    return sentences
 
 
 def query_view(request):
@@ -132,11 +138,12 @@ def transcribe(request):
             fs = re.sub(r"([?!~])\.", r"\1", fs)
 
         ps = text_to_paragraphs(fs)
+        ss = text_to_sentences(fs)
 
         return render(
             request,
             "transcribe/result.html",
-            {"raw": nl, "transcript": fs, "paragraphs": ps},
+            {"raw": nl, "transcript": fs, "paragraphs": ps, "sentences": ss},
         )
 
     except InputData.DoesNotExist:

@@ -10,13 +10,16 @@
         <div class="tabs is-centered is-toggle">
           <ul>
             <li id="rawTab">
-              <a>Raw Data</a>
+              <a>Raw Text</a>
             </li>
             <li class="is-active" id="transcriptTab">
               <a>Transcript</a>
             </li>
             <li id="paragraphsTab">
               <a>Paragraphs</a>
+            </li>
+            <li id="sentencesTab">
+              <a>Sentences</a>
             </li>
           </ul>
         </div>
@@ -46,14 +49,34 @@
           </div>
           <div class="column box p-5 pt-6 tab-content content is-8-tablet" id="paragraphsContentDiv">
             <div id="paragraphsContent">
-              {% for paragraph in paragraphs %}
-                <p>
-                  {{ paragraph }}
-                </p>
-              {% endfor %}
+              <ol>
+                {% for paragraph in paragraphs %}
+                  <li>
+                    {{ paragraph }}
+                  </li>
+                {% endfor %}
+              </ol>
             </div>
 
-            <button class=" button is-warning copy-button is-small" onclick="copyText('paragraphs')">
+            <button class=" button is-warning copy-button is-small" onclick="copyText('sentences')">
+              <span class="icon is-small">
+                <i class="fa fa-clone"></i>
+              </span>
+              <span>Copy</span>
+            </button>
+          </div>
+          <div class="column box p-5 pt-6 tab-content content is-8-tablet" id="sentencesContentDiv">
+            <div id="sentencesContent">
+              <ol>
+                {% for sentence in sentences %}
+                  <li>
+                    {{ sentence }}
+                  </li>
+                {% endfor %}
+              </ol>
+
+            </div>
+            <button class=" button is-warning copy-button is-small" onclick="copyText('sentences')">
               <span class="icon is-small">
                 <i class="fa fa-clone"></i>
               </span>
