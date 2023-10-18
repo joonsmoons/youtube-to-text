@@ -23,7 +23,7 @@ pip install -r requirements.txt
 python manage.py runserver
 ```
 4. **Access the Web Application**:
-Open your web browser and navigate to http://localhost:8000 to start using YouTubeToText.
+Open your web browser and navigate to `http://localhost:8000` to start using YouTubeToText.
 
 ## Usage
 1. **Input YouTube Video URL**:
@@ -34,7 +34,7 @@ After entering the URL, click the "Submit" button, and shortly the subtitles wil
 You will be able to copy the transcribed text, in three different formats (raw, transcript, and paragraph). 
 
 ## License
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/joonsmoons/youtube-to-text/blob/main/LICENSE) file for details.
 
 ## Contact
 If you have any questions or need assistance, feel free to reach out to me at joonsmoons@gmail.com.
