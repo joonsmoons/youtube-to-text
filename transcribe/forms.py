@@ -125,9 +125,7 @@ class QueryForm(forms.ModelForm):
 
         try:
             transcript_last = transcript[-1]
-            # print(transcript_last)
             max_time = transcript_last["start"] + transcript_last["duration"]
-            print(start_time, end_time)
             start_time_seconds = (
                 time_str_to_seconds(start_time) if start_time != "" else 0
             )

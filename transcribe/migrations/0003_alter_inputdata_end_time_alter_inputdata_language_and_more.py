@@ -5,7 +5,7 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
     dependencies = [
-        ("generator", "0002_alter_inputdata_language_delete_language"),
+        ("transcribe", "0002_alter_inputdata_language_delete_language"),
     ]
 
     operations = [

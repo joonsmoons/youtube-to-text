@@ -135,7 +135,7 @@ def transcribe(request):
 
         return render(
             request,
-            "generator/result.html",
+            "transcribe/result.html",
             {"raw": nl, "transcript": fs, "paragraphs": ps},
         )
 

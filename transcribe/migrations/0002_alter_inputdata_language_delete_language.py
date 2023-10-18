@@ -5,7 +5,7 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
     dependencies = [
-        ("generator", "0001_initial"),
+        ("transcribe", "0001_initial"),
     ]
 
     operations = [
