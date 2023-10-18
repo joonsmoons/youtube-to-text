@@ -28,8 +28,8 @@
 .copy-button,
 .disclaimer {
   position: absolute;
-  top: 10px;
-  right: 20px;
+  top: 2%;
+  right: 4%;
   opacity: 0.5;
   z-index: 1; /* Ensure it's above other elements */
 }
@@ -53,5 +53,10 @@
 
   .input-form {
     padding: 0rem;
+  }
+
+  .tabs li {
+    font-size: 0.7rem; /* Adjust the font size for smaller tabs */
+    padding: 0; /* Adjust padding for smaller tabs */
   }
 }

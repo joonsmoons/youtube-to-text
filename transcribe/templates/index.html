@@ -3,7 +3,7 @@
   <title>YouTubeToText</title>
 {% endblock %}
 {% block content %}
-  <section class="hero is-fullheight-with-navbar mt-4">
+  <section class="hero mt-4">
     <div class="hero-body">
       <div class="columns is-align-items-center is-justify-content-center">
         <div class="column is-5">
@@ -17,7 +17,7 @@
         <div class="column is-6 m-2 box input-form">
           <form class="form" method="post">
             {% csrf_token %}
-
+            <input type="hidden" name="transcript" value="{{ transcript_json }}">
             <div class="field">
               <label class="label" for="{{form.youtube_url.id_for_label}}">Enter URL</label>
               <div class="control">
