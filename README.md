@@ -1,8 +1,6 @@
-# YouTube-To-Text
+![Website](https://github.com/joonsmoons/youtube-to-text/assets/113525606/6e6e6c8f-4a30-48d3-9d52-de08d44fb114)
 
 [YouTube-To-Text](https://youtube-to-text.com/q/) is a cost-free online tool designed for effortlessly fetching subtitles directly from YouTube videos. With our platform, users can readily obtain subtitles or easily copy them from our transcription tool. There's no need for users to hassle with downloading extensions or external software. Our approach is entirely web-based, allowing you to acquire subtitles by simply inputting the video's URL and clicking the copy button.
-
-![Website](https://github.com/joonsmoons/youtube-to-text/assets/113525606/6e6e6c8f-4a30-48d3-9d52-de08d44fb114)
 
 ## Features
 - **Fetch YouTube Subtitles**: YouTubeToText makes it easy to extract subtitles from YouTube videos by simply providing the video's URL.
