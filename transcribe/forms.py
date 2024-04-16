@@ -112,7 +112,7 @@ class QueryForm(forms.ModelForm):
             lang = ""
             if language == "ko":
                 lang = "한국어"
-            elif language == "en":
+            elif language == "en_US":
                 lang = "English"
             self.add_error(
                 "youtube_url",

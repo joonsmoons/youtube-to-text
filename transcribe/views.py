@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from .forms import QueryForm
 from .models import InputData
-from youtube_transcript_api import YouTubeTranscriptApi
 from youtube_transcript_api.formatters import TextFormatter
 from deepmultilingualpunctuation import PunctuationModel
 import kss
