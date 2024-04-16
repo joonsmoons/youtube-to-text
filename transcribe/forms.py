@@ -94,9 +94,8 @@ class QueryForm(forms.ModelForm):
             else:
                 parsed_dict = parse_qs(parsed_url.query)
                 video_id = parsed_dict["v"][0]
-            transcript = YouTubeTranscriptApi.get_transcript(
-                video_id, languages=[language]
-            )
+
+            transcript = YouTubeTranscriptApi.get_transcript(video_id, languages=[language])
 
             transcript_json = json.dumps(transcript)
             cleaned_data["transcript"] = transcript_json
